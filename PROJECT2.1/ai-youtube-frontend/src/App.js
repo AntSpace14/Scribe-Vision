@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
 
 function App() {
   const [mode, setMode] = useState("url");
@@ -32,7 +33,8 @@ function App() {
     }
 
     try {
-      const res = await axios.post(`http://localhost:5000/api/comments/${endpoint}`, payload);
+      const res = await axios.post(`${backendUrl}/api/comments/${endpoint}`, payload);
+
       setComments(res.data.comments);
       setSummary(res.data.summary);
       setKeywords(res.data.keywords || []);
