@@ -68,7 +68,7 @@ function App() {
       borderRadius: "10px",
       boxShadow: "0 4px 12px rgba(0,0,0,0.1)"
     }}>
-      <h2 style={{ textAlign: "center", marginBottom: 30 }}>🎯 YouTube Comment Analyzer</h2>
+      <h2 style={{ textAlign: "center", marginBottom: 30 }}>🎯 Scribe-Vision<br>YouTube Comment Analyzer</br> (By Antariksh Sarmah)</h2>
 
       <div style={{ marginBottom: 16, textAlign: "center" }}>
         <label>
