@@ -50,14 +50,25 @@ function App() {
   const extractVideoId = (url) => {
     try {
       const parsed = new URL(url);
+  
+      // For short links like youtu.be/abc123
       if (parsed.hostname === "youtu.be") return parsed.pathname.slice(1);
+  
       if (parsed.hostname.includes("youtube.com")) {
+        // Standard videos: youtube.com/watch?v=abc123
         if (parsed.searchParams.has("v")) return parsed.searchParams.get("v");
+  
+        // Embedded videos: youtube.com/embed/abc123
         if (parsed.pathname.startsWith("/embed/")) return parsed.pathname.split("/embed/")[1];
+  
+        // Shorts: youtube.com/shorts/abc123
+        if (parsed.pathname.startsWith("/shorts/")) return parsed.pathname.split("/shorts/")[1];
       }
     } catch {}
+  
     return null;
   };
+  
 
   return (
     <div style={{
