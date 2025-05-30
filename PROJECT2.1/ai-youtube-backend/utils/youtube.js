@@ -43,7 +43,7 @@ const searchVideosByTheme = async (theme) => {
       key: YOUTUBE_API_KEY,
       part: "snippet",
       q: theme,
-      maxResults: 7,
+      maxResults: 6,
       type: "video",
     },
   });
