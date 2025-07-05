@@ -6,19 +6,23 @@ const fetchCommentsByVideoId = async (videoId) => {
   let nextPageToken = "";
   let count = 0;
 
-  while (count < 50) {
-    const res = await axios.get("https://www.googleapis.com/youtube/v3/commentThreads", {
-      params: {
-        part: "snippet",
-        videoId,
-        key: YOUTUBE_API_KEY,
-        maxResults: 50,
-        pageToken: nextPageToken,
-        textFormat: "plainText",
-      },
-    });
+  while (count < 500) {
+    const res = await axios.get(
+      "https://www.googleapis.com/youtube/v3/commentThreads",
+      {
+        params: {
+          part: "snippet",
+          videoId,
+          key: YOUTUBE_API_KEY,
+          maxResults: 100,
+          pageToken: nextPageToken,
+          textFormat: "plainText",
+          order: "relevance", // 👈 Top comments first
+        },
+      }
+    );
 
-    const items = res.data.items.map(item => {
+    const items = res.data.items.map((item) => {
       const snippet = item.snippet.topLevelComment.snippet;
       return {
         username: snippet.authorDisplayName,
@@ -34,7 +38,7 @@ const fetchCommentsByVideoId = async (videoId) => {
     if (!nextPageToken) break;
   }
 
-  return comments.slice(0, 100);
+  return comments.slice(0, 500);
 };
 
 const searchVideosByTheme = async (theme) => {
@@ -45,14 +49,15 @@ const searchVideosByTheme = async (theme) => {
       q: theme,
       maxResults: 5,
       type: "video",
+      order: "relevance", // ✅ makes the intent explicit
+      safeSearch: "none", // optional: can use "moderate" or "strict"
     },
   });
 
-  return res.data.items.map(item => ({
+  return res.data.items.map((item) => ({
     videoId: item.id.videoId,
-    title: item.snippet.title
+    title: item.snippet.title,
   }));
 };
-
 
 module.exports = { fetchCommentsByVideoId, searchVideosByTheme };

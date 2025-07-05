@@ -1,6 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const { fetchCommentsByVideoId, searchVideosByTheme } = require("../utils/youtube");
+const {
+  fetchCommentsByVideoId,
+  searchVideosByTheme,
+} = require("../utils/youtube");
 const { analyzeSentiments } = require("../utils/sentiment");
 const { extractKeywords } = require("../utils/keywords");
 const { summarizeComments } = require("../utils/summarizer");
@@ -10,9 +13,12 @@ router.post("/url", async (req, res) => {
   try {
     const { videoId } = req.body;
     const comments = await fetchCommentsByVideoId(videoId);
-    const sentimentResults = analyzeSentiments(comments);
-    const summary = await summarizeComments(comments.map(c => c.text));
-    const keywords = extractKeywords(comments.map(c => c.text).join(" "));
+    const sentimentResults = analyzeSentiments(comments).sort(
+      (a, b) => b.likes - a.likes
+    );
+
+    const summary = await summarizeComments(comments.map((c) => c.text));
+    const keywords = extractKeywords(comments.map((c) => c.text).join(" "));
     res.json({ comments: sentimentResults, summary, keywords });
   } catch (err) {
     console.error(err);
@@ -39,9 +45,14 @@ router.post("/theme", async (req, res) => {
       }
     }
 
-    const sentimentResults = analyzeSentiments(allComments);
-    const summary = await summarizeComments(allComments.map(c => c.text));
-    const keywords = extractKeywords(allComments.map(c => c.text).join(" ")).slice(0, 30);
+    const sentimentResults = analyzeSentiments(allComments).sort(
+      (a, b) => b.likes - a.likes
+    );
+
+    const summary = await summarizeComments(allComments.map((c) => c.text));
+    const keywords = extractKeywords(
+      allComments.map((c) => c.text).join(" ")
+    ).slice(0, 30);
 
     res.json({ comments: sentimentResults, summary, keywords, videosUsed });
   } catch (err) {
@@ -49,7 +60,5 @@ router.post("/theme", async (req, res) => {
     res.status(500).json({ error: "Failed to process theme" });
   }
 });
-
-
 
 module.exports = router;

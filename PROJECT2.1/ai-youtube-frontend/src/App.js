@@ -119,7 +119,7 @@ function App() {
             <strong className="text-purple-600"> Mistral AI</strong> and the
             <strong className="text-red-500"> YouTube Data API</strong> to
             uncover public opinion, emotion, and keywords — perfect for writers
-            seeking inspiration.
+            seeking inspiration. Developed by Antariksh Sarmah.
           </p>
 
           <ul className="list-disc list-inside text-gray-600 text-sm space-y-1 pl-1">
