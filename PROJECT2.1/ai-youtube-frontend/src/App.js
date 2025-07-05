@@ -255,7 +255,8 @@ function App() {
         {comments.length > 0 && (
           <div className="mt-12 animate-fade-in-up">
             <h3 className="text-lg sm:text-xl font-semibold mb-3 text-gray-800">
-              💬 Top <span className="text-indigo-600">Comments</span>
+              💬 Top <span className="text-indigo-600">Comments</span> (
+              {comments.length})
             </h3>
             <div className="space-y-5 max-h-[450px] overflow-y-auto pr-1 sm:pr-2">
               {comments.map((c, i) => (
