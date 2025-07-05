@@ -14,8 +14,12 @@ module.exports = {
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         lightbulbPulse: {
-          "0%, 100%": { filter: "drop-shadow(0 0 4px #facc15)" },
-          "50%": { filter: "drop-shadow(0 0 12px #facc15)" },
+          "0%, 100%": {
+            filter: "drop-shadow(0 0 8px #facc15) brightness(0.9)",
+          },
+          "50%": {
+            filter: "drop-shadow(0 0 24px #facc15) brightness(1.9)",
+          },
         },
       },
       animation: {

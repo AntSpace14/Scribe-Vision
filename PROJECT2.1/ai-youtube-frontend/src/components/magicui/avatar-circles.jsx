@@ -1,4 +1,4 @@
-("use client");
+"use client";
 import { cn } from "../../lib/utils";
 
 export const AvatarCircles = ({ numPeople, className, avatarUrls }) => {
@@ -12,7 +12,6 @@ export const AvatarCircles = ({ numPeople, className, avatarUrls }) => {
           rel="noopener noreferrer"
         >
           <img
-            key={index}
             className="h-10 w-10 rounded-full border-2 border-white dark:border-gray-800"
             src={url.imageUrl}
             width={40}
@@ -22,12 +21,12 @@ export const AvatarCircles = ({ numPeople, className, avatarUrls }) => {
         </a>
       ))}
       {(numPeople ?? 0) > 0 && (
-        <a
+        <button
+          type="button"
           className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white bg-black text-center text-xs font-medium text-white hover:bg-gray-600 dark:border-gray-800 dark:bg-white dark:text-black"
-          href=""
         >
           +{numPeople}
-        </a>
+        </button>
       )}
     </div>
   );
