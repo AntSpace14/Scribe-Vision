@@ -9,7 +9,7 @@
 ---
 
 ## 🔗 Access
-
+NOTE: This service is on a free-tier so please use judiciously (don't wanna get bills!)
 Try it live: [https://scribe-vision.netlify.app/](https://scribe-vision.netlify.app/)
 
 ---
