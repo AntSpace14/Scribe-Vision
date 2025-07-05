@@ -102,7 +102,7 @@ function App() {
         </header>
 
         {/* About Card */}
-        <div className="relative isolate overflow-hidden rounded-3xl bg-white/80 p-6 sm:p-8 md:p-10 shadow-lg backdrop-blur-md hover:shadow-2xl animate-fade-in-up">
+        <div className="relative isolate overflow-hidden rounded-3xl bg-white/80 p-6 sm:p-8 md:p-10 shadow-lg backdrop-blur-md transition-all duration 500 hover:shadow-2xl animate-fade-in-up">
           <div className="absolute -inset-8 -z-10 rounded-[inherit] bg-gradient-to-br from-transparent via-blue-100 to-transparent opacity-30 blur-2xl animate-pulse"></div>
           <div className="absolute inset-0 -z-10 rounded-[inherit] bg-gradient-radial from-black/5 via-transparent to-transparent blur-xl"></div>
 
